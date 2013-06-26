@@ -4,7 +4,7 @@ public class ExpenseNamer {
     public ExpenseNamer() {
     }
 
-    String getName(Expense expense) {
+    public String getName(Expense expense) {
         String name = "TILT";
         if (expense instanceof DinnerExpense)
             name = "Dinner";
