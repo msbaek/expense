@@ -3,6 +3,8 @@ package expensereport;
 import java.util.ArrayList;
 import java.util.List;
 
+import static expensereport.Expense.Type.*;
+
 public class ExpenseReport {
     List<Expense> expenses = new ArrayList<Expense>();
     int total;
