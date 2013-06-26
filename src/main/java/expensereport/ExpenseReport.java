@@ -35,13 +35,17 @@ public class ExpenseReport {
             printer.print(String.format("%s\t%s\t$%.02f\n",
                     ((expense.type == DINNER && expense.amount > 5000)
                             || (expense.type == BREAKFAST && expense.amount > 1000)) ? "X" : " ",
-                    name, expense.amount / 100.0));
+                    name, penniesToDollars(expense.amount)));
 
             total += expense.amount;
         }
 
-        printer.print(String.format("\nMeal expenses $%.02f", mealExpenses / 100.0));
-        printer.print(String.format("\nTotal $%.02f", total / 100.0));
+        printer.print(String.format("\nMeal expenses $%.02f", penniesToDollars(mealExpenses)));
+        printer.print(String.format("\nTotal $%.02f", penniesToDollars(total)));
+    }
+
+    private double penniesToDollars(int amount) {
+        return amount / 100.0;
     }
 
     public void addExpense(Expense expense) {
