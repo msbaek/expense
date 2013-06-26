@@ -31,11 +31,14 @@ public class ExpenseReport {
     }
 
     private void totalUpExpenses() {
-        for (Expense expense : expenses) {
-            if (isMeal(expense))
-                mealExpenses += expense.amount;
-            total += expense.amount;
-        }
+        for (Expense expense : expenses)
+            addTotals(expense);
+    }
+
+    private void addTotals(Expense expense) {
+        if (isMeal(expense))
+            mealExpenses += expense.amount;
+        total += expense.amount;
     }
 
     private boolean isMeal(Expense expense) {
