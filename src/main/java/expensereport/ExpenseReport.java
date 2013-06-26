@@ -52,9 +52,13 @@ public class ExpenseReport {
 
     private void printExpense(Expense expense) {
         printer.print(String.format("%s\t%s\t$%.02f\n",
-                ((expense.type == DINNER && expense.amount > 5000)
-                        || (expense.type == BREAKFAST && expense.amount > 1000)) ? "X" : " ",
+                isOverage(expense) ? "X" : " ",
                 getName(expense), penniesToDollars(expense.amount)));
+    }
+
+    private boolean isOverage(Expense expense) {
+        return ((expense.type == DINNER && expense.amount > 5000)
+                || (expense.type == BREAKFAST && expense.amount > 1000));
     }
 
     private String getName(Expense expense) {
