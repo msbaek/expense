@@ -40,6 +40,10 @@ public class ExpenseReport {
             total += expense.amount;
         }
 
+        printTotals(printer, total, mealExpenses);
+    }
+
+    private void printTotals(ReportPrinter printer, int total, int mealExpenses) {
         printer.print(String.format("\nMeal expenses $%.02f", penniesToDollars(mealExpenses)));
         printer.print(String.format("\nTotal $%.02f", penniesToDollars(total)));
     }
