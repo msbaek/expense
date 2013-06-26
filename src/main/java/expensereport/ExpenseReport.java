@@ -3,8 +3,6 @@ package expensereport;
 import java.util.ArrayList;
 import java.util.List;
 
-import static expensereport.Expense.Type.*;
-
 public class ExpenseReport {
     List<Expense> expenses = new ArrayList<Expense>();
     int total;
@@ -19,13 +17,9 @@ public class ExpenseReport {
     }
 
     void addTotals(Expense expense) {
-        if (isMeal(expense))
+        if (expense.isMeal())
             mealExpenses += expense.amount;
         total += expense.amount;
-    }
-
-    boolean isMeal(Expense expense) {
-        return expense.type == BREAKFAST || expense.type == DINNER;
     }
 
     public void addExpense(Expense expense) {
