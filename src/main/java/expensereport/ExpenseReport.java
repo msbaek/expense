@@ -21,11 +21,12 @@ public class ExpenseReport {
     public void printReport(ReportPrinter printer) {
         this.printer = printer;
         totalUpExpenses();
+        printExpensesAndTotals();
+    }
 
+    private void printExpensesAndTotals() {
         printHeader();
-
         printExpenses();
-
         printTotals();
     }
 
