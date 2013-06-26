@@ -11,6 +11,7 @@ public class ExpenseReport {
     private List<Expense> expenses = new ArrayList<Expense>();
     private int total;
     private int mealExpenses;
+    private ReportPrinter printer;
 
     public ExpenseReport() {
         total = 0;
@@ -18,6 +19,7 @@ public class ExpenseReport {
     }
 
     public void printReport(ReportPrinter printer) {
+        this.printer = printer;
         printHeader(printer);
 
         totalUpExpenses();
