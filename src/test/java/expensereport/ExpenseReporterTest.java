@@ -6,13 +6,13 @@ import org.junit.Test;
 import static expensereport.Expense.Type.*;
 import static org.junit.Assert.assertEquals;
 
-public class ExpenseReportTest {
-    private ExpenseReport report = new ExpenseReport();
+public class ExpenseReporterTest {
+    private ExpenseReporter report = new ExpenseReporter();
     private MockReportPrinter printer = new MockReportPrinter();
 
     @Before
     public void setUp() {
-        report = new ExpenseReport();
+        report = new ExpenseReporter();
         printer = new MockReportPrinter();
     }
 
