@@ -1,21 +1,12 @@
 package expensereport;
 
-import static expensereport.Expense.Type.BREAKFAST;
-import static expensereport.Expense.Type.DINNER;
+public abstract class Expense {
+    abstract boolean isOverage();
 
-public class Expense {
-    boolean isOverage() {
-        return ((type == DINNER && amount > 5000)
-                || (type == BREAKFAST && amount > 1000));
-    }
-
-    boolean isMeal() {
-        return type == BREAKFAST || type == DINNER;
-    }
+    abstract boolean isMeal();
 
     public enum Type {DINNER, BREAKFAST, CAR_RENTAL}
 
-    ;
     public Type type;
     public int amount;
 
