@@ -22,6 +22,12 @@ public class ExpenseReport {
             total += expense.amount;
         }
 
+        printExpenses(printer);
+
+        printTotals(printer, total, mealExpenses);
+    }
+
+    private void printExpenses(ReportPrinter printer) {
         for (Expense expense : expenses) {
             String name = "TILT";
             switch (expense.type) {
@@ -40,8 +46,6 @@ public class ExpenseReport {
                             || (expense.type == BREAKFAST && expense.amount > 1000)) ? "X" : " ",
                     name, penniesToDollars(expense.amount)));
         }
-
-        printTotals(printer, total, mealExpenses);
     }
 
     private void printTotals(ReportPrinter printer, int total, int mealExpenses) {
