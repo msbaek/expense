@@ -35,17 +35,12 @@ public class ExpenseReporter {
 
     private String getName(Expense expense) {
         String name = "TILT";
-        switch (expense.type) {
-            case DINNER:
-                name = "Dinner";
-                break;
-            case BREAKFAST:
-                name = "Breakfast";
-                break;
-            case CAR_RENTAL:
-                name = "Car Rental";
-                break;
-        }
+        if(expense instanceof DinnerExpense)
+            name = "Dinner";
+        else if(expense instanceof BreakfastExpense)
+            name = "Breakfast";
+        else if(expense instanceof CarRentalExpense)
+            name = "Car Rental";
         return name;
     }
 
