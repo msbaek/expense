@@ -30,7 +30,7 @@ public class ExpenseReporterTest {
 
     @Test
     public void printOneDinner() {
-        report.addExpense(new Expense(DINNER, 1678));
+        report.addExpense(new DinnerExpense(DINNER, 1678));
         report.printReport(printer);
 
         assertEquals(
@@ -44,8 +44,8 @@ public class ExpenseReporterTest {
 
     @Test
     public void twoMeals() throws Exception {
-        report.addExpense(new Expense(DINNER, 1000));
-        report.addExpense(new Expense(BREAKFAST, 500));
+        report.addExpense(new DinnerExpense(DINNER, 1000));
+        report.addExpense(new BreakfastExpense(BREAKFAST, 500));
         report.printReport(printer);
 
         assertEquals(
@@ -61,9 +61,9 @@ public class ExpenseReporterTest {
 
     @Test
     public void twoMealsAndCarRental() throws Exception {
-        report.addExpense(new Expense(DINNER, 1000));
-        report.addExpense(new Expense(BREAKFAST, 500));
-        report.addExpense(new Expense(CAR_RENTAL, 50000));
+        report.addExpense(new DinnerExpense(DINNER, 1000));
+        report.addExpense(new BreakfastExpense(BREAKFAST, 500));
+        report.addExpense(new CarRentalExpense(CAR_RENTAL, 50000));
         report.printReport(printer);
 
         assertEquals(
@@ -79,10 +79,10 @@ public class ExpenseReporterTest {
 
     @Test
     public void overages() throws Exception {
-        report.addExpense(new Expense(BREAKFAST, 1000));
-        report.addExpense(new Expense(BREAKFAST, 1001));
-        report.addExpense(new Expense(DINNER, 5000));
-        report.addExpense(new Expense(DINNER, 5001));
+        report.addExpense(new BreakfastExpense(BREAKFAST, 1000));
+        report.addExpense(new BreakfastExpense(BREAKFAST, 1001));
+        report.addExpense(new DinnerExpense(DINNER, 5000));
+        report.addExpense(new DinnerExpense(DINNER, 5001));
         report.printReport(printer);
 
         assertEquals(
