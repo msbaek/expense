@@ -20,9 +20,9 @@ public class ExpenseReport {
 
     public void printReport(ReportPrinter printer) {
         this.printer = printer;
-        printHeader();
-
         totalUpExpenses();
+
+        printHeader();
 
         printExpenses();
 
