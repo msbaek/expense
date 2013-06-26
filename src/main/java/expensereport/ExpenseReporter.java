@@ -34,10 +34,6 @@ public class ExpenseReporter {
                 expenseNamer.getName(expense), penniesToDollars(expense.amount)));
     }
 
-    private String getName(Expense expense) {
-        return expenseNamer.getName(expense);
-    }
-
     private void printTotals() {
         printer.print(String.format("\nMeal expenses $%.02f", penniesToDollars(expenseReport.mealExpenses)));
         printer.print(String.format("\nTotal $%.02f", penniesToDollars(expenseReport.total)));
