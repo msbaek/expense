@@ -20,15 +20,19 @@ public class ExpenseReport {
     public void printReport(ReportPrinter printer) {
         printHeader(printer);
 
+        totalUpExpenses();
+
+        printExpenses(printer);
+
+        printTotals(printer, total, mealExpenses);
+    }
+
+    private void totalUpExpenses() {
         for (Expense expense : expenses) {
             if (expense.type == BREAKFAST || expense.type == DINNER)
                 mealExpenses += expense.amount;
             total += expense.amount;
         }
-
-        printExpenses(printer);
-
-        printTotals(printer, total, mealExpenses);
     }
 
     private void printExpenses(ReportPrinter printer) {
