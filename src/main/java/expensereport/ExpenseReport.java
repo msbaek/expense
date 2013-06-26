@@ -20,13 +20,13 @@ public class ExpenseReport {
 
     public void printReport(ReportPrinter printer) {
         this.printer = printer;
-        printHeader(printer);
+        printHeader();
 
         totalUpExpenses();
 
-        printExpenses(printer);
+        printExpenses();
 
-        printTotals(printer);
+        printTotals();
     }
 
     private void totalUpExpenses() {
@@ -37,7 +37,7 @@ public class ExpenseReport {
         }
     }
 
-    private void printExpenses(ReportPrinter printer) {
+    private void printExpenses() {
         for (Expense expense : expenses) {
             String name = getName(expense);
             printer.print(String.format("%s\t%s\t$%.02f\n",
@@ -63,12 +63,12 @@ public class ExpenseReport {
         return name;
     }
 
-    private void printTotals(ReportPrinter printer) {
+    private void printTotals() {
         printer.print(String.format("\nMeal expenses $%.02f", penniesToDollars(mealExpenses)));
         printer.print(String.format("\nTotal $%.02f", penniesToDollars(total)));
     }
 
-    private void printHeader(ReportPrinter printer) {
+    private void printHeader() {
         printer.print("Expenses " + getDate() + "\n");
     }
 
