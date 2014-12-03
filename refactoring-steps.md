@@ -42,9 +42,13 @@
 
 ## 3. SRP 위반 해소
 
-#### 3.1 extract delegate
+#### 3.1 rename ExpenseReport to ExpenseReporter
+
+#### 3.2 extract delegate - ExpenseReport
+
 - BL(totalUpExpenses, addToTotals, addExenses, expenses, total, mealExpenses) 추출
-- safely delete unused methods
+
+#### 3.3 safely delete unused methods
 
 ## 4. OCP 위반 해소
 - replace type code with subclasses
