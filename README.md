@@ -227,4 +227,16 @@ Type에 종속적이여서 OCP를 위반하고 있다. [Replace Type Code with S
 
 개인적으로는 getName을 Expese 클래스로 옮기면 더 좋을 것 같다는 생각이 든다.
 
-[메일](msbaek71@gmail.com)이나 [facebook design by object 그룹](https://www.facebook.com/groups/508738095846803/)으로 의견이나 질문 받겠습니다.
+## before
+
+![image](https://api.monosnap.com/image/download?id=9YECq5aTeu8MNSkcHr7m1UDb87NGpm)
+
+## after
+
+![image](https://api.monosnap.com/image/download?id=3bLF0FkTKqEdngdW3vJyOcBfDURTxp)
+
+* 클래스 다이어그램을 보면 복잡해 진 것 같으나, 기존 다이어그램에서 Expense가 data holder로서 객체의 역할을 수행하지 못하고 있는 것에 반해
+* 리팩토링 후에는 책임(출력, 계산)이 분리되었고, Expense에 관련된 행위가 옮겨졌다. 또 다이어그램만으로 어떤 Expense들이 존재하는지 어떤 기능들이 있는지가 눈에 잘 들어온다.
+* 또 데이터와 관련된 기능이 한 객체에 모이면서 내부의 변경이 외부에 영향을 주지 않게 되었다.
+
+메일: msbaek71@gmail.com 이나 [facebook design by object 그룹](https://www.facebook.com/groups/508738095846803/)으로 의견이나 질문 받겠습니다.
