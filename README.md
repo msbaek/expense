@@ -25,7 +25,7 @@
 
 # 1. 문제
 
-### 1.1 Function Shoud Do One Thing 위반
+### 1.1 Function Should Do One Thing 위반
 
 ![image](imgs/fig-01-function-should-do-onething.png)
 
