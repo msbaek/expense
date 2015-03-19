@@ -85,56 +85,56 @@ Function Should Do One Thing을 준수하기 위해 extract method를 수행한�
 	- 비즈니스 로직과 포맷팅 로직을 추출하기 위해 비즈니스 로직을 한 곳으로 모인다.
 	![image](imgs/move-line-up.png)
 	- 비즈니스 로직과 포맷팅 로직을 분리하기 위해 for-loop를 2개로 분리한다.
-	![image](split-for-loop.png)
+	![image](imgs/split-for-loop.png)
 	- printExpenses 메소드를 추출한다.
-	![image](printExpenses.png)
+	![image](imgs/printExpenses.png)
 - 비즈니스 로직을 totalUpExpenses라는 메소드를 추출하고 싶으나 2개의 변수가 변경되어 extract할 수 없다.
-	![image](cannot-extract.png)
+	![image](imgs/cannot-extract.png)
 	- 2개의 변수에 대해 extract field한다. 이때 constructor에서 initialize하도록 선택한다.
 	![image](extract-fields.png)
 	- extract method - totalUpExpenses
-	![image](totalUpExpenses.png)
+	![image](imgs/totalUpExpenses.png)
 
 ##### 2.1.3 Change Signature
 - total, mealExpenses는 field로 추출했으므로 파라미터로 전달할 필요가 없다.
-	![image](change-signature.png)
+	![image](imgs/change-signature.png)
 
 *** 보통 코드의 여러곳에 사용되는 변수들은 리팩토링 전에 field로 추출하는 작업을 선행한다. 그럼 더 편하게 리팩토링이 가능하다.***
 
 ##### 2.1.4 getName
-![image](getName.png)
+![image](imgs/getName.png)
 
 ##### 2.1.5 Create a Field for Parameter
 printReport에 전달된 printer가 여러 함수에 파라미터로 전달되고 있다. 이를 field로 생성하여 파라미터 개수를 줄인다.
 - Create a Field for Parameter
-![image](Create-a-Field-for-Parameter.png)
+![image](imgs/Create-a-Field-for-Parameter.png)
 - field로 변환한 printer를 파라미터로 갖는 메소드들에 대해 change signature를 수행하여 파라미터를 제거한다.
-![image](change-signature-remove-printer-parameter.png)
+![image](imgs/change-signature-remove-printer-parameter.png)
 
 ##### 2.1.6 printExpensesAndTotals
 - 이 메소드를 추출하기 위한 사전 작업으로 move line up을 수행한다.
-![image](move-line-up-totalUpExpenses.png)
+![image](imgs/move-line-up-totalUpExpenses.png)
 - printExpensesAndTotals 메소드를 추출한다.
-![image](printExpensesAndTotals.png)
+![image](imgs/printExpensesAndTotals.png)
 
 ##### 2.1.7 printExpense
 - {}를 없애기 위해 메소드 추출
 - {}는 function should do one thing을 위반하고 있다는 증후이다.
-![image](printExpense.png)
+![image](imgs/printExpense.png)
 - 불필요한 변수 선언을 제거하기 위해 name을 inline한다.
-![image](inline-name.png)
+![image](imgs/inline-name.png)
 
 ##### 2.1.8 isMeal
 - 가독성을 위해 isMeal 메소드를 추출한다.
-![image](isMeal.png)
+![image](imgs/isMeal.png)
 
 ##### 2.1.9 addTotals
 {}를 제거하기 위해 addTotals 메소드를 추출한다.
-![image](addTotals.png)
+![image](imgs/addTotals.png)
 
 ##### 2.1.10 isOverage
 가독성을 위해 isOverage를 추출한다.
-![image](isOverage.png)
+![image](imgs/isOverage.png)
 
 
 ### 2.2 SRP 위반
@@ -143,60 +143,60 @@ printReport에 전달된 printer가 여러 함수에 파라미터로 전달되�
 ExpenseReport에서 비즈니스 로직을 추출하여 이를 ExpeseReport라고 하기위해 지금의 ExpeseReport는 ExpeseReporter로 rename한다.
 
 ##### 2.2.2 Extract Class
-![image](extract-class-ExpenseReport.png)
+![image](imgs/extract-class-ExpenseReport.png)
 
 - extract class할 때는 관련된 메소드/필드를 함께 추출해야 한다.
 - 사용하거나 호출하는 메소드/필드를 "Members to Extract"에서 잘 선택한다.
 
-![image](extracted-class-ExpenseReport.png)
+![image](imgs/extracted-class-ExpenseReport.png)
 
-![image](after-extract-class-ExpenseReporter.png)
+![image](imgs/after-extract-class-ExpenseReporter.png)
 
 ##### 2.2.3 Safely Delete Unused Methods
 - extract class 후에 사용되지 않는 메소드들이 발생한다. 이를 제거한다.
 - (intellJ에서는 커밋때 이런 warning이 있으면 알려주니… 커밋 전에 작업하는 것이 좋다.)
-![image](safely-delete.png)
+![image](imgs/safely-delete.png)
 
 ### 2.3 Feature Envy
 [Feature Envy](http://en.wikipedia.org/wiki/Code_smell)인 메소드 isOverage, isMeal를 Expense 클래스로 [Move Method](http://www.refactoring.com/catalog/moveMethod.html)한다.
-![image](feature-envy-02.png)
-![image](feature-envy-03.png)
-![image](feature-envy-01.png)
+![image](imgs/feature-envy-02.png)
+![image](imgs/feature-envy-03.png)
+![image](imgs/feature-envy-01.png)
 
 ### 2.4 OCP 위반
 Type에 종속적이여서 OCP를 위반하고 있다. [Replace Type Code with Subclasses](http://www.refactoring.com/catalog/replaceTypeCodeWithSubclasses.html)를 적용하자.
 
 ##### 2.4.1 Test 수정
 - Test를 수정하여 Expense가 아니라 필요한 타입의 서브 클래스를 생성하도록 한다.
-![image](type-code-01.png)
+![image](imgs/type-code-01.png)
 - IDE의 quick fix 기능을 이용하여 3개의 서브 클래스를 추가하고 테스트를 수행하여 성공을 확인
 - 객체 생성시 파라미터로 전달하는 type(예. DINNER)과 클래스명(예. DinnerExpense)는 중복이다. 파라미터를 제거한다.
 	- 테스트
-![image](remove-type-in-constructor-01.png)
+![image](imgs/remove-type-in-constructor-01.png)
 	- 프로덕션
-![image](remove-type-in-constructor-02.png)
+![image](imgs/remove-type-in-constructor-02.png)
 
 ##### 2.4.2 push members down
 - Expense 클래스에서 isMeal, isOverage 2개의 메소드를 선택하여
 - keep abstract를 선택하여 base 클래스에는 abstract로 유지되도록
 
-	![image](Push-Members-Down.png)
-	![image](Push-Members-Down-01.png)
-	![image](Push-Members-Down-02.png)
+	![image](imgs/Push-Members-Down.png)
+	![image](imgs/Push-Members-Down-01.png)
+	![image](imgs/Push-Members-Down-02.png)
 
 ##### 2.4.3 타입별 수정
 - isMeal, isOverage 메소드에 대해서 타입별로 수정
 - 이때 코드 커버리지를 참조하면서 수행할 수도 있다.
-	![image](modify-subclass-01.png)
-	![image](modify-subclass-02.png)
-	![image](modify-subclass-03.png)
+	![image](imgs/modify-subclass-01.png)
+	![image](imgs/modify-subclass-02.png)
+	![image](imgs/modify-subclass-03.png)
 
 ##### 2.4.4 Remove Type
 - 더 이상 사용되지 않는 Expense.Type enum을 제거한다.
 - getName 메소드에서 Type을 사용하지 않도록 수정한다.
-	![image](remove-type-01.png)
-	![image](remove-type-02.png)
-	![image](remove-type-03.png)
+	![image](imgs/remove-type-01.png)
+	![image](imgs/remove-type-02.png)
+	![image](imgs/remove-type-03.png)
 
 ##### 2.4.5 Extract Class - ExpenseNamer
 이제 새로운 타입이 추가되면 수정은 없다. 그저 Expense를 상속받는 새로운 클래스를 추가하면 된다.
@@ -205,20 +205,20 @@ Type에 종속적이여서 OCP를 위반하고 있다. [Replace Type Code with S
 
 이를 새로운 클래스로 추출하고, 인터페이스를 추출하고, ExpenseRepoter가 인터페이스에 의존성을 갖게 하여 비즈니스 로직(app part)의 변경 없이 새로운 타입을 추가할 수 있도록 한다.
 - Extract Class - ExpenseNamer
-	![image](Extract-Class-ExpenseNamer.png)
-	![image](Extract-Class-ExpenseNamer-01.png)
+	![image](imgs/Extract-Class-ExpenseNamer.png)
+	![image](imgs/Extract-Class-ExpenseNamer-01.png)
 - 더 이상 사용되지 않는 ExpenseReport#getName 메소드를 safely delete한다.
 - change scope of getName to public
 	- extract interface를 위해 변경한다.
 - extract interface
-	![image](extract-interface-ExpenseNamer.png)
-	![image](extract-interface-01.png)
-	![image](extract-interface-02.png)
-	![image](extract-interface-03.png)
+	![image](imgs/extract-interface-ExpenseNamer.png)
+	![image](imgs/extract-interface-01.png)
+	![image](imgs/extract-interface-02.png)
+	![image](imgs/extract-interface-03.png)
 
 # 결론
 
-![image](class-diagram.png)
+![image](imgs/class-diagram.png)
 
 이상의 과정에서 이와 같은 아키텍쳐를 얻었다.
 
