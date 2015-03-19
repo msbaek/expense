@@ -91,7 +91,7 @@ Function Should Do One Thing을 준수하기 위해 extract method를 수행한�
 - 비즈니스 로직을 totalUpExpenses라는 메소드를 추출하고 싶으나 2개의 변수가 변경되어 extract할 수 없다.
 	![image](imgs/cannot-extract.png)
 	- 2개의 변수에 대해 extract field한다. 이때 constructor에서 initialize하도록 선택한다.
-	![image](extract-fields.png)
+	![image](imgs/extract-fields.png)
 	- extract method - totalUpExpenses
 	![image](imgs/totalUpExpenses.png)
 
